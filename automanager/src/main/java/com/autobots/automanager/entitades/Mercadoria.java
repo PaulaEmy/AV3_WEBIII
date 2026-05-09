@@ -19,7 +19,7 @@ public class Mercadoria {
 	@Column(nullable = false)
 	private Date validade;
 	@Column(nullable = false)
-	private Date fabricao;
+	private Date fabricacao;
 	@Column(nullable = false)
 	private Date cadastro;
 	@Column(nullable = false)
