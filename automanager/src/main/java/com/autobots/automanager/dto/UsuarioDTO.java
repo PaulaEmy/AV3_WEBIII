@@ -9,7 +9,6 @@ public class UsuarioDTO {
     private String nome;
     private String nomeSocial;
     private Endereco endereco;
-    private Long empresaId;
 }
 
 //૮₍ ´˶• ᴥ •˶` ₎ა shoyu~

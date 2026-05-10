@@ -77,4 +77,16 @@ public class ControleEmpresa {
 
         return ResponseEntity.noContent().build();
     }
+
+    @PostMapping("/{empresaId}/usuarios/{usuarioId}")
+    public EntityModel<Empresa> adicionarUsuario(
+            @PathVariable Long empresaId,
+            @PathVariable Long usuarioId) {
+
+        Empresa empresa = servico.adicionarUsuario(
+                empresaId,
+                usuarioId);
+
+        return assembler.toModel(empresa);
+    }
 }

@@ -16,7 +16,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.autobots.automanager.enumeracoes.PerfilUsuario;
 
 import lombok.Data;
@@ -24,6 +24,7 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(exclude = { "mercadorias", "vendas", "veiculos" })
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 public class Usuario {
 	@Id
@@ -62,7 +63,5 @@ public class Usuario {
 		CascadeType.REFRESH
 	})
 	private Set<Veiculo> veiculos = new HashSet<>();
-	@ManyToOne
-	@JoinColumn(name = "empresa_id")
-	private Empresa empresa;
+
 }

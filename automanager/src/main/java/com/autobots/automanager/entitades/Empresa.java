@@ -35,7 +35,7 @@ public class Empresa {
 	private Endereco endereco;
 	@Column(nullable = false)
 	private Date cadastro;
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<Usuario> usuarios = new HashSet<>();
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<Mercadoria> mercadorias = new HashSet<>();

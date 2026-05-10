@@ -7,13 +7,18 @@ import org.springframework.stereotype.Service;
 
 import com.autobots.automanager.dto.EmpresaDTO;
 import com.autobots.automanager.entitades.Empresa;
+import com.autobots.automanager.entitades.Usuario;
 import com.autobots.automanager.repositorios.RepositorioEmpresa;
+import com.autobots.automanager.repositorios.RepositorioUsuario;
 
 @Service
 public class ServicoEmpresa {
 
     @Autowired
     private RepositorioEmpresa repositorio;
+
+    @Autowired
+    private RepositorioUsuario repositorioUsuario;
 
     public List<Empresa> listarEmpresas() {
         return repositorio.findAll();
@@ -49,5 +54,24 @@ public class ServicoEmpresa {
 
     public void deletarEmpresa(Long id) {
         repositorio.deleteById(id);
+    }
+
+    public Empresa adicionarUsuario(
+        Long empresaId,
+        Long usuarioId) {
+
+        Empresa empresa = repositorio
+                .findById(empresaId)
+                .orElseThrow(() ->
+                        new RuntimeException("Empresa não encontrada"));
+
+        Usuario usuario = repositorioUsuario
+                .findById(usuarioId)
+                .orElseThrow(() ->
+                        new RuntimeException("Usuário não encontrado"));
+
+        empresa.getUsuarios().add(usuario);
+
+        return repositorio.save(empresa);
     }
 }
